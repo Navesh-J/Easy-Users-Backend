@@ -1,0 +1,21 @@
+{
+  "name": "simpleapi(nodejs)",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon src/server.js",
+    "test": "ava"
+  },
+  "keywords": [],
+  "author": "Navesh",
+  "license": "ISC",
+  "description": "Simple API to build a backend with NodeJS",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10"
+  },
+  "devDependencies": {
+    "ava": "^6.3.0"
+  }
+}
