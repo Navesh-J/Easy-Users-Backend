@@ -1,10 +1,15 @@
-import { useState } from 'react'
+import { Container } from "react-bootstrap" 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import ReadUsers from "./components/ReadUsers"
+
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-
+      <Container>
+        <ReadUsers/>
+      </Container>
     </>
   )
 }
