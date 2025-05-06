@@ -12,8 +12,10 @@
   "description": "Simple API to build a backend with NodeJS",
   "dependencies": {
     "express": "^5.1.0",
+    "express-yup-middleware": "^2.0.0",
     "http-status-codes": "^2.3.0",
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "ava": "^6.3.0"
