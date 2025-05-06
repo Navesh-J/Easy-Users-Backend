@@ -1,9 +1,7 @@
 import express, { response } from 'express';
-import { StatusCodes } from "http-status-codes";
 import { expressYupMiddleware } from 'express-yup-middleware';
 
 import userController from './controllers/user.controller.js'
-import userService from './services/user.service.js'
 import {getUser,addUser,updateUser,deleteUser} from './user.schemas.js';
 
 const router = express.Router()
@@ -21,7 +19,7 @@ router.get('/:id',
     userController.getUser)
 
 router.post('/',
-    expressYupMiddleware({schemaValidator:addUser, expectedStatusCode:StatusCodes.BAD_REQUEST}),
+    expressYupMiddleware({schemaValidator:addUser}),
     userController.addUser
 )
 
