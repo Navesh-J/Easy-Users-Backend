@@ -19,7 +19,7 @@ const limiter = rateLimit({
 app.use(limiter)
 app.use(express.json())
 app.use(helmet())
-app.use(compression)
+app.use(compression())
 
 app.use('/v1',mainRoutes)
 app.use('/v1/user',userRoutes)
