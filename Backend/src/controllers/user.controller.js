@@ -49,7 +49,7 @@ const addUser=(req,res)=>{
     
     return res.status(StatusCodes.CREATED).send({
         status:STATUS.success,
-        message:user,
+        user:addedUser,
     }); 
 }
 
