@@ -6,8 +6,8 @@ const logger = pino();
 import userService from '../services/user.service.js'
 
 const STATUS={
-    'success':'OK',
-    'failure':'ERROR'
+    'success':true,
+    'failure':false,
 }
 
 const getAllUsers=(req,res)=>{
