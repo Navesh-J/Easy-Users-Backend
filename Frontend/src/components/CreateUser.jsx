@@ -1,0 +1,93 @@
+import React, { useState } from "react";
+import { Container, Row, Col, Form,Button } from "react-bootstrap";
+import { toast } from "react-toastify";
+import axios from "axios";
+
+const CreateUser = () => {
+  const createUserEndpoint = "http://localhost:5000/v1/user/";
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [city, setCity] = useState("");
+  const [country, setCountry] = useState("");
+
+  const submitForm = async (event) => {
+    event.preventDefault();
+
+    const payload = {
+      name,
+      email,
+      city,
+      country,
+    };
+
+    try {
+      const res = await axios.post(`${createUserEndpoint}`, payload);
+
+      if (res.data?.status) {
+        toast.success('User Successfully Created !')
+
+        setName('');
+        setEmail('');
+        setCity('');
+        setCountry('');
+
+      } else {
+        toast.warn('An error has occurred.')
+      }
+    } catch (error) {
+        const {data:{errors:{body}}} = error.response;
+        const message = body[0]?.message;
+        toast.error(message[0].toUpperCase()+message.substring(1)); 
+        console.log(error.message );
+    }
+  };
+
+  return (
+    <Container className="mb-5">
+      <Row className="justify-content-center">
+        <Col lg={6}>
+          <Form>
+            <Form.Group className="mb-3">
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Name"
+                onChange={(e) => setName(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>City</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="City"
+                onChange={(e) => setCity(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Country</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Country"
+                onChange={(e) => setCountry(e.target.value)}
+              />
+            </Form.Group>
+            <Button variant="primary" type=" submit" onClick={submitForm}>
+              Add User
+            </Button>
+          </Form>
+        </Col>
+      </Row>
+    </Container>
+  );
+};
+
+export default CreateUser;
