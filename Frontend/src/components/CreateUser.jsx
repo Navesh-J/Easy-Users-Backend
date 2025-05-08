@@ -22,10 +22,12 @@ const CreateUser = () => {
     };
 
     try {
-      const res = await axios.post(`${createUserEndpoint}`, payload);
+      const {data:apiResponse} = await axios.post(`${createUserEndpoint}`, payload);
+      console.log(apiResponse);
 
-      if (res.data?.status) {
-        toast.success('User Successfully Created !')
+      if (apiResponse?.status) {
+        const getUserId = apiResponse?.user?.id;
+        toast.success(`User ${getUserId} Successfully Created !`)
 
         setName('');
         setEmail('');
@@ -52,6 +54,7 @@ const CreateUser = () => {
               <Form.Label>Name</Form.Label>
               <Form.Control
                 type="text"
+                value={name}
                 placeholder="Name"
                 onChange={(e) => setName(e.target.value)}
               />
@@ -60,6 +63,7 @@ const CreateUser = () => {
               <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
+                value={email}
                 placeholder="Email"
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -68,6 +72,7 @@ const CreateUser = () => {
               <Form.Label>City</Form.Label>
               <Form.Control
                 type="text"
+                value={city}
                 placeholder="City"
                 onChange={(e) => setCity(e.target.value)}
               />
@@ -76,6 +81,7 @@ const CreateUser = () => {
               <Form.Label>Country</Form.Label>
               <Form.Control
                 type="text"
+                value={country}
                 placeholder="Country"
                 onChange={(e) => setCountry(e.target.value)}
               />
