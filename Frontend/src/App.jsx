@@ -1,9 +1,6 @@
-import { Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { ToastContainer, toast } from 'react-toastify';
 import {BrowserRouter,Routes,Route,Link} from 'react-router-dom';
 
-// import "./index.css"
 import UsersList from "./components/UsersList";
 import CreateUser from "./components/CreateUser";
 import RetrieveUser from "./components/RetrieveUser";
@@ -12,8 +9,6 @@ function App() {
 
   return (
     <>
-        <Container fluid className="mt-4 mb-3 text-blue-800">
-          <ToastContainer />
             <BrowserRouter>
               <Routes>
                 <Route path="/" element={<UsersList />} />
@@ -22,7 +17,6 @@ function App() {
                 <Route path="/:userId" element={<RetrieveUser />} />
               </Routes>
             </BrowserRouter>
-        </Container>
     </>
   );
 }

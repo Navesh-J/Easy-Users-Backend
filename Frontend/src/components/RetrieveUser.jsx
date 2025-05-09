@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import axios from "axios";
+import Layout from "./Layout/Layout";
 
 const RetrieveUser = () => {
   const { userId } = useParams();
@@ -23,7 +24,7 @@ const RetrieveUser = () => {
   }, [userId]);
 
   return (
-    <Container className="mt-5 mb-5">
+    <Layout>
       {user ? (
         <Row className="justify-content-center">
           <Col lg={4}>
@@ -43,7 +44,7 @@ const RetrieveUser = () => {
       ) : (
         <div className="text-center text-danger font-bold">User Cannot be found!</div>
       )}
-    </Container>
+    </Layout>
   );
 };
 
