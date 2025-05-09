@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import axios from "axios";
-import Layout from "./Layout/Layout";
+import Layout from "../Layout/Layout";
 
 const RetrieveUser = () => {
   const { userId } = useParams();

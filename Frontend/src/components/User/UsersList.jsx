@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Card, Col, Container, Row } from "react-bootstrap";
-import Layout from "./Layout/Layout";
+import Layout from "../Layout/Layout";
 // import "../index.css"
 
 const UsersList = () => {

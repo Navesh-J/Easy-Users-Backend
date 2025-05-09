@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container, Row, Col, Form,Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 import axios from "axios";
-import Layout from "./Layout/Layout";
+import Layout from "../Layout/Layout";
 
 const CreateUser = () => {
   const createUserEndpoint = "http://localhost:5000/v1/user/";
