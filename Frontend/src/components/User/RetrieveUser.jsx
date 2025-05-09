@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import axios from "axios";
+import * as userService from '../../services/user.service.js'
 import Layout from "../Layout/Layout";
 
 const RetrieveUser = () => {
@@ -12,7 +13,7 @@ const RetrieveUser = () => {
 
   const fetchUser = async () => {
     try {
-      const { data: apiResponse } = await axios.get(`${getUserEndpoint}`);
+      const apiResponse = await userService.retrieveUser(userId);
       setUser(apiResponse);
     } catch (err) {
       setUser(null);
