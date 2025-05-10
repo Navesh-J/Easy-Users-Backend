@@ -4,6 +4,8 @@ import {BrowserRouter,Routes,Route,Link} from 'react-router-dom';
 import UsersList from "./components/User/UsersList";
 import CreateUser from "./components/User/CreateUser";
 import RetrieveUser from "./components/User/RetrieveUser";
+import EditUser from "./components/User/EditUser";
+import DeleteUser from "./components/User/DeleteUser";
 
 function App() {
 
@@ -15,6 +17,8 @@ function App() {
                 <Route path="/all" element={<UsersList />} />
                 <Route path="/add" element={<CreateUser />} />
                 <Route path="/:userId" element={<RetrieveUser />} />
+                <Route path="/update/:userId" element={<EditUser />} />
+                <Route path="/delete/:userId" element={<DeleteUser />} />
               </Routes>
             </BrowserRouter>
     </>

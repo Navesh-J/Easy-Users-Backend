@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Card, Col, Row } from "react-bootstrap";
+import { Button,Card, Col, Row } from "react-bootstrap";
 import * as userService from '../../services/user.service.js'
 import Layout from "../Layout/Layout";
+import { NavLink } from "react-router-dom";
 // import "../index.css"
 
 const UsersList = () => {
@@ -30,6 +31,7 @@ const UsersList = () => {
                 {user.city && user.country &&(
                   <p>{user.city} - {user.country}</p>
                 )}
+                <Button variant='primary' as={NavLink} to={`/update/${user.id}`}>Edit User</Button>
               </Card.Body>
             </Card>
           </Col>

@@ -1,18 +1,37 @@
-import React, { useState } from "react";
-import {Row, Col, Form,Button } from "react-bootstrap";
+import { useState, useEffect } from "react";
+import * as userService from "../../services/user.service.js";
+import { NavLink, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import * as userService from '../../services/user.service.js'
-import Layout from "../Layout/Layout";
+import { Row, Col, Form, Button } from "react-bootstrap";
+import Layout from "../Layout/Layout.jsx";
 
-const CreateUser = () => {
+const EditUser = () => {
+  const { userId } = useParams();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
 
-  const submitForm = async (event) => {
-    event.preventDefault();
+  const updateUser = async () => {
+    try {
+      const user = await userService.retrieveUser(userId);
+      setName(user.name);
+      setEmail(user.email);
+      setCity(user.city);
+      setCountry(user.country);
+    } catch (error) {
+      console.log(error.message);
+      toast.error(`User ${userId} cannot be found.`);
+    }
+  };
+
+  useEffect(() => {
+    updateUser();
+  }, [userId]);
+
+  const submitForm = async (e) => {
+    e.preventDefault();
 
     const payload = {
       name,
@@ -22,31 +41,24 @@ const CreateUser = () => {
     };
 
     try {
-      const apiResponse = await userService.createUser(payload);
-      console.log(apiResponse);
-
-      if (apiResponse?.status) {
-        const getUserId = apiResponse?.user?.id;
-        toast.success(`User ${getUserId} Successfully Created !`)
-
-        setName('');
-        setEmail('');
-        setCity('');
-        setCountry('');
-
+      const response = await userService.editUser(userId, payload);
+      if (response?.status) {
+        toast.success(`User ${userId} successfully updated!`);
       } else {
-        toast.warn('An error has occurred.')
+        toast.warn("User could not be updated, please contact devs");
       }
     } catch (error) {
-        const {data:{errors:{body}}} = error.response;
-        const message = body[0]?.message;
-        toast.error(message[0].toUpperCase()+message.substring(1)); 
-        console.log(error.message );
+      const message =
+        error?.response?.data?.errors?.body?.[0]?.message ||
+        "An unexpected error occurred.";
+      toast.error(message[0].toUpperCase() + message.substring(1));
+      console.log(error.message);
     }
   };
 
   return (
     <Layout>
+      <h3 className="text-center">Edit User</h3>
       <Row className="justify-content-center">
         <Col lg={6}>
           <Form>
@@ -87,9 +99,12 @@ const CreateUser = () => {
               />
             </Form.Group>
             <div className="d-flex justify-content-center">
-            <Button variant="primary" type=" submit" onClick={submitForm}>
-              Add User
-            </Button>
+              <Button variant="primary" type="submit" onClick={submitForm} className="m-1">
+                Update
+              </Button>
+              <Button variant="danger" as={NavLink} to={`/delete/${userId}`} className="m-1">
+                Delete
+              </Button>
             </div>
           </Form>
         </Col>
@@ -98,4 +113,4 @@ const CreateUser = () => {
   );
 };
 
-export default CreateUser;
+export default EditUser;
