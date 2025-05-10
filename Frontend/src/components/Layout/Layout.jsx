@@ -1,7 +1,7 @@
-import React from 'react'
 import { Container } from 'react-bootstrap'
 import { ToastContainer } from 'react-toastify'
 import NavigationBar from './NavigationBar.jsx'
+import Footer from './Footer.jsx'
 
 
 const Layout = ({children}) => {
@@ -12,6 +12,7 @@ const Layout = ({children}) => {
             <NavigationBar />
               <Container className='mt-5 text-blue-800'>{children}</Container>
         </Container>
+        <Footer />
     </>
   )
 }
