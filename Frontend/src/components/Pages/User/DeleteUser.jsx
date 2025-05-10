@@ -1,5 +1,5 @@
-import Layout from "../Layout/Layout";
-import * as userService from "../../services/user.service.js";
+import Layout from "../../Layout/Layout";
+import * as userService from "../../../services/user.service.js";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Button, Row } from "react-bootstrap";

@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import * as userService from "../../services/user.service.js";
+import * as userService from "../../../services/user.service.js";
 import { NavLink, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Row, Col, Form, Button } from "react-bootstrap";
-import Layout from "../Layout/Layout.jsx";
+import Layout from "../../Layout/Layout.jsx";
 
 const EditUser = () => {
   const { userId } = useParams();

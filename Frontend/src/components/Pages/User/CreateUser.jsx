@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import {Row, Col, Form,Button } from "react-bootstrap";
 import { toast } from "react-toastify";
-import * as userService from '../../services/user.service.js'
-import Layout from "../Layout/Layout";
+import * as userService from '../../../services/user.service.js'
+import Layout from "../../Layout/Layout.jsx";
 
 const CreateUser = () => {
 

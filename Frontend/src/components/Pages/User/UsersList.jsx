@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Button,Card, Col, Row } from "react-bootstrap";
-import * as userService from '../../services/user.service.js'
-import Layout from "../Layout/Layout";
+import * as userService from '../../../services/user.service.js'
+import Layout from "../../Layout/Layout.jsx";
 import { NavLink } from "react-router-dom";
 // import "../index.css"
 
