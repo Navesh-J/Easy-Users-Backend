@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card, Col, Row } from "react-bootstrap";
+import { Button, Card, Col, Row, Spinner } from "react-bootstrap";
 import * as userService from "../../../services/user.service.js";
 import Layout from "../../Layout/Layout.jsx";
 import { NavLink } from "react-router-dom";
@@ -7,16 +7,22 @@ import { NavLink } from "react-router-dom";
 const UsersList = () => {
   const [users, setUsers] = useState({});
   const [errorMessage, setErrorMessage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchUsers = async () => {
     try {
+      setIsLoading(true)
+      // sleep for 4s to check the Spinner loader
+      // await new Promise(r => setTimeout(r, 4000));
       const res = await userService.retrieveAllUsers();
       setUsers(res);
+      setIsLoading(false)
     } catch (error) {
       const retrieveErrorMessage = () => {
         const message = error?.response?.data?.message;
         return message ?? 'Error while connecting to the server';
       };
+      setIsLoading(false);
       setErrorMessage(retrieveErrorMessage());
     }
   };
@@ -27,7 +33,13 @@ const UsersList = () => {
 
   return (
     <Layout>
-      {errorMessage ? (
+      {isLoading ? (
+        <div className="text-center">
+          <Spinner animation="grow" />
+          <p>Loading...</p>
+        </div>
+      ):
+      errorMessage ? (
         <h3 className="text-center text-danger fw-bold">{errorMessage}</h3>
       ) : (
         <>
