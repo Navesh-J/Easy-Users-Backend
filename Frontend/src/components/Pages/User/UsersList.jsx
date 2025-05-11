@@ -45,9 +45,9 @@ const UsersList = () => {
       ) : (
         <>
           <h3 className="text-center mb-3">Users</h3>
+          <Row className="justify-content-center">
           {Object.values(users).map((user) => (
-            <Row className="justify-content-center" key={user.id || user.email}>
-              <Col lg={4}>
+              <Col lg={4} key={user.id} className="p-2">
                 <Card border="primary">
                   <Card.Body>
                     <h4>{user.name}</h4>
@@ -67,8 +67,8 @@ const UsersList = () => {
                   </Card.Body>
                 </Card>
               </Col>
-            </Row>
           ))}
+          </Row>
         </>
       )}
     </Layout>
