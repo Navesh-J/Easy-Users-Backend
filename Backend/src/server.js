@@ -9,7 +9,7 @@ import compression from 'compression';
 
 
 const app = express()
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;;
 
 const limiter = rateLimit({
 	windowMs: 60 * 1000, // 1 minute
