@@ -22,9 +22,10 @@ const UsersList = () => {
         const message = error?.response?.data?.message;
         return message ?? 'Error while connecting to the server';
       };
-      setIsLoading(false);
       setErrorMessage(retrieveErrorMessage());
-    }
+    }finally{
+        setIsLoading(false);
+      }
   };
 
   useEffect(() => {
