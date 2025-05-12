@@ -22,7 +22,7 @@ app.use(express.json());
 app.use(helmet());
 app.use(compression());
 app.use(cors({
-    origin: 'https://easyusers.vercel.app/'
+    origin: 'https://easyusers.vercel.app'
 }));
 
 app.use('/v1',mainRoutes)
